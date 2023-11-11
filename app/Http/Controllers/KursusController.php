@@ -24,8 +24,8 @@ class KursusController extends Controller
         $data->description = $request->description;
         if ( $request->hasFile( 'cover' ) ) {
             $file = $request->file( 'cover' );
-            $name = 'cover-'.Carbon::now(). '.' . $file->getClientOriginalExtension();
-            $file->move( public_path() . '/cover_image', $name );
+            $name = 'cover-'.date('ymdhis'). '.' . $file->getClientOriginalExtension();
+            $request->cover->move( public_path('/cover_image'), $name );
             $gambar = $name;
         } else {
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard | Online Course "testing"</title>
+    <title>Dashboard | Online Course</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
@@ -231,7 +231,7 @@
                         <div class="course d-flex overflow-x-auto">
                             @foreach ($data as $row)
                             <div class="view-course d-flex">
-                                <div class="card card-image me-3" style="width: 15rem; height: 20rem; background-image: url('{{ asset('/cover_image'.$row->cover) }}');">
+                                <div class="card card-image me-3" style="width: 15rem; height: 20rem; background-image: url('{{ asset('/cover_image/'.$row->cover) }}');">
                                 </div>
                                 <div class="card card-detail1" style="width: 15rem; height: 20rem">
                                     <h5 class="card-title">{{ $row->judul }}</h5>

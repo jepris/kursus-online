@@ -17,9 +17,9 @@
                 <form style="margin: 30px" action="/insertdata" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Cover</label>
-                        <input type="file" name="cover" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
+                        <label for="formFile" class="form-label">Cover</label>
+                        <input class="form-control" type="file" id="cover" name="cover">
+                      </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Judul</label>
                         <input type="text" name="judul" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
