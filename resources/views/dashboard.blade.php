@@ -13,7 +13,7 @@
 
 <body>
     {{-- navbar --}}
-    <nav class="navbar navbar-expand-lg mt-3">
+    <nav class="navbar navbar-expand-lg mt-3 mb-4">
         <div class="container">
             <a class="navbar-brand" dissable>Logo.</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
@@ -34,12 +34,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">List Course </a>
+                    </li>
                 </ul>
             </div>
             <form class="d-flex" role="search justify-content-end">
                 <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
                     Search</button>
                 <button class="btn btn-outline-dark" type="submit">Join Our Course</button>
+                <button class="btn btn-outline-dark ms-3" type="submit">Login</button>
             </form>
         </div>
     </nav>
@@ -48,7 +52,7 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="deskripsi">
+                <div class="deskripsi" style="background-image: url('{{ asset('/img/desc1.png') }}');">
                     <div class="card-ui card float-end me-2" style="width: 60px;">
                         <div class="card-body">
                             <ion-icon name="triangle-outline" class="triangle"></ion-icon> <br>
@@ -57,7 +61,7 @@
                         </div>
                     </div>
                     <div class="col-5 ms-5">
-                        <h1>Best Digital Online Courses</h1>
+                        <h1>Best Digital <span class="o-style">O</span>nline Courses</h1>
                         <p>Digital online courses provide an accessible and flexible way for individual to acquire
                             new knowledge and skills in various field</p>
                     </div>
@@ -105,21 +109,22 @@
                                 <div class="study">
                                     <div class="gambar-col">
                                         <div class="row">
-                                            <div class="col">
-                                                <img src="{{ asset('img/4.jpg') }}" class="img-col1" alt="">
+                                            <div class="col-5">
+                                                <img src="{{ asset('img/course1.jpeg') }}" class="img-col1 mt-2 ms-2"
+                                                    style="border-radius: 10px" alt="">
                                             </div>
-                                            <div class="col">
-                                                <img src="{{ asset('img/8.jpeg') }}" class="img-col2 mt-1"
-                                                    alt=""> <br>
-                                                <img src="{{ asset('img/8.jpeg') }}" class="img-col3 mt-2"
-                                                    alt="">
+                                            <div class="col-7">
+                                                <img src="{{ asset('img/course2.jpg') }}" class="img-col2 ms-4 mt-1 me-1"
+                                                    style="border-radius:15px" alt=""> <br>
+                                                <img src="{{ asset('img/8.jpeg') }}" class="img-col3 mt-2 ms-4"
+                                                    style="border-radius:15px" alt="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="desc-study">
                                         <div class="row">
                                             <div class="col-8">
-                                                <h6 class="mt-1">Study at your own place</h6>
+                                                <h6 class="mt-3">Study at your own place</h6>
                                             </div>
                                         </div>
                                         <div class="icon-arrow">
@@ -230,27 +235,28 @@
                     <div class="col-8">
                         <div class="course d-flex overflow-x-auto">
                             @foreach ($data as $row)
-                            <div class="view-course d-flex">
-                                <div class="card card-image me-3" style="width: 15rem; height: 20rem; background-image: url('{{ asset('/cover_image/'.$row->cover) }}');">
-                                </div>
-                                <div class="card card-detail1" style="width: 15rem; height: 20rem">
-                                    <h5 class="card-title">{{ $row->judul }}</h5>
-                                    <p class="card-text">{{ $row->description }}</p>
-                                    <div class="card-button">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a href="">
-                                                    <p>Join Class</p>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a href="" class="a-link"><i data-feather="arrow-up-right"
-                                                        class="icon"></i></a>
+                                <div class="view-course d-flex">
+                                    <div class="card card-image me-3"
+                                        style="width: 15rem; height: 20rem; background-image: url('{{ asset('/cover_image/' . $row->cover) }}');">
+                                    </div>
+                                    <div class="card card-detail1" style="width: 15rem; height: 20rem">
+                                        <h5 class="card-title">{{ $row->judul }}</h5>
+                                        <p class="card-text">{{ $row->description }}</p>
+                                        <div class="card-button">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a href="">
+                                                        <p>Join Class</p>
+                                                    </a>
+                                                </div>
+                                                <div class="col">
+                                                    <a href="" class="a-link"><i data-feather="arrow-up-right"
+                                                            class="icon"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>

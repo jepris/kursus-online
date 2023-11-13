@@ -31,8 +31,13 @@
     color: orange;
 }
 
+.deskripsi{
+    background-repeat: no-repeat;
+    background-position: right 150px center;
+}
+
 .deskripsi h1{
-    font-size: 3.8em;
+    font-size: 3.9em;
     font-weight: bolder;
     margin-top: 40px;
     margin-bottom: 30px;
@@ -43,8 +48,11 @@
     margin-bottom: 20px;
 }
 
-.deskripsi{
-    background-color: aliceblue;
+.o-style{
+    background-color: #FFC978;
+    border-bottom-left-radius: 200px;
+    border-bottom-right-radius: 200px;
+    border-top-left-radius: 200px;
 }
 
 .hero-button{
@@ -113,7 +121,7 @@
 }
 
 .study{
-    background-color: #77FF85;
+    background-color: #D4FFC9;
     border-radius: 20px;
 }
 
@@ -141,7 +149,7 @@
 }
 
 .learning{
-    background-color: #E5E5E5;
+    background-color: #F5F5F5;
     border-radius: 20px;
 }
 
