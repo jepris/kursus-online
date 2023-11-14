@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ Route::get('/dashboard', [KursusController::class, 'index'])->name('dashboard');
 // tambah data
 Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata');
 Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');
+
+// login
+Route::get('/sesi',[SessionController::class, 'index']);
+Route::post('/sesi/login',[SessionController::class, 'login']);

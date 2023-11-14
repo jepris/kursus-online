@@ -35,7 +35,7 @@
                         <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">List Course </a>
+                        <a class="nav-link" href="/tambahdata">List Course </a>
                     </li>
                 </ul>
             </div>
@@ -65,7 +65,7 @@
                         <p>Digital online courses provide an accessible and flexible way for individual to acquire
                             new knowledge and skills in various field</p>
                     </div>
-                    <button class="hero-button ms-5">Get Started</button>
+                    <a href="#course" class="btn hero-button ms-5" style="width:120px;">Get Started</a>
                     <div class="hero-detail d-flex float-end">
                         <div class="card card-lesson" style="width: 11rem heigt: 3rem;">
                             <div class="card-body">
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="icon-arrow">
                                             <button>
-                                                <a href="" class=" btn icon-block"><ion-icon
+                                                <a href="#course" class=" btn icon-block"><ion-icon
                                                         name="arrow-forward-outline"></ion-icon></a>
                                             </button>
                                         </div>
@@ -206,7 +206,7 @@
     </section>
 
     {{-- card view --}}
-    <section>
+    <section id="course">
         <div class="container">
             <div class="card-view mt-5 p-5">
                 <div class="row">
