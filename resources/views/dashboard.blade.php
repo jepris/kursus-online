@@ -13,13 +13,13 @@
 
 <body>
     <div class="container">
-        @if (session('succes'))
-        <div class="alert alert-success">
-            {{ session('succes') }}
-        </div>
-    @endif
-    {{-- navbar --}}
-    <nav class="navbar navbar-expand-lg mt-3 mb-4">
+        @if (session('success'))
+            <div class="alert alert-success" id="myAlert">
+                {{ session('success') }}
+            </div>
+        @endif
+        {{-- navbar --}}
+        <nav class="navbar navbar-expand-lg mt-3 mb-4">
             <a class="navbar-brand" dissable>Logo.</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,10 +48,25 @@
                 <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
                     Search</button>
                 <button class="btn btn-outline-dark" type="submit">Join Our Course</button>
-                <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a>
+                {{-- <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a> --}}
+
+                @if (auth()->check())
+                    <div class="dropdown ms-3">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ auth()->user()->name }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="dropdown-item" type="button" disabled>{{ auth()->user()->name }}</button></li>
+                            <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
+                        </ul>
+                    </div>
+                @else
+                    <a class="btn btn-light ms-3" href="/sesi">Login</a>
+                @endif
             </form>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     {{-- hero section --}}
     <section>
@@ -119,8 +134,9 @@
                                                     style="border-radius: 10px" alt="">
                                             </div>
                                             <div class="col-7">
-                                                <img src="{{ asset('img/course2.jpg') }}" class="img-col2 ms-4 mt-1 me-1"
-                                                    style="border-radius:15px" alt=""> <br>
+                                                <img src="{{ asset('img/course2.jpg') }}"
+                                                    class="img-col2 ms-4 mt-1 me-1" style="border-radius:15px"
+                                                    alt=""> <br>
                                                 <img src="{{ asset('img/8.jpeg') }}" class="img-col3 mt-2 ms-4"
                                                     style="border-radius:15px" alt="">
                                             </div>
@@ -282,6 +298,21 @@
     {{-- icon feather --}}
     <script>
         feather.replace();
+    </script>
+
+    {{-- timer javascript --}}
+    <script>
+        // Wait for the DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the alert element
+            var alertElement = document.getElementById('myAlert');
+
+            // Set a timeout to hide the alert after 20 seconds (20000 milliseconds)
+            setTimeout(function() {
+                // Add the 'hidden' class to hide the alert
+                alertElement.classList.add('hidden');
+            }, 3000); // 20 seconds in milliseconds
+        });
     </script>
 </body>
 
