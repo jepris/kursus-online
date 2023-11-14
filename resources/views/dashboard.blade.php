@@ -12,9 +12,14 @@
 </head>
 
 <body>
+    <div class="container">
+        @if (session('succes'))
+        <div class="alert alert-success">
+            {{ session('succes') }}
+        </div>
+    @endif
     {{-- navbar --}}
     <nav class="navbar navbar-expand-lg mt-3 mb-4">
-        <div class="container">
             <a class="navbar-brand" dissable>Logo.</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +48,7 @@
                 <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
                     Search</button>
                 <button class="btn btn-outline-dark" type="submit">Join Our Course</button>
-                <button class="btn btn-outline-dark ms-3" type="submit">Login</button>
+                <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a>
             </form>
         </div>
     </nav>

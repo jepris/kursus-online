@@ -13,12 +13,17 @@
 <body>
     <div class="container">
         <h1 class="text-center mt-3">Login</h1>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="card" style="margin-top: 70px">
             <form style="margin: 30px" action="/sesi/login" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input class="form-control" type="email" id="email" name="email">
+                    <input class="form-control" value="{{ Session::get('email') }}" type="email" id="email" name="email">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
