@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Session;
 
 class SessionController extends Controller
 {
-    function index()
+    public function index()
     {
         return view("sesi/index");
     }
 
-    function login(Request $request)
+    public function login(Request $request)
     {
         Session::flash('email', $request->email);
         $request->validate([
@@ -40,20 +40,20 @@ class SessionController extends Controller
         }
     }
 
-    function logout(){
+    public function logout(){
         Auth::logout();
         return redirect('dashboard')->with('success', 'Berhasil Logout');
     }
 
-    function register(){
+    public function register(){
         return view('sesi/register');
     }
 
-    function create(Request $request){
+     public function create(Request $request){
         Session::flash('name', $request->name);
         Session::flash('email', $request->email);
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|email:dns',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ],[
@@ -82,7 +82,7 @@ class SessionController extends Controller
             return redirect('dashboard')->with('success', Auth::user()->name . ' Berhasil Login');
         }else {
             // kalau otentikasi gagal
-            return redirect('sesi')->with('error', 'Username dan Password yang dimasukkan tidak valid');        
+            return back()->with('error', 'Username dan Password yang dimasukkan tidak valid');        
         }
     }
 }

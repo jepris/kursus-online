@@ -260,7 +260,7 @@
                                     <div class="card card-image me-3"
                                         style="width: 15rem; height: 20rem; background-image: url('{{ asset('/cover_image/' . $row->cover) }}');">
                                     </div>
-                                    <div class="card card-detail1" style="width: 15rem; height: 20rem">
+                                    <div class="card card-detail1" style="width: 15rem; height: 20rem;">
                                         <h5 class="card-title">{{ $row->judul }}</h5>
                                         <p class="card-text">{{ $row->description }}</p>
                                         <div class="card-button">
@@ -268,7 +268,7 @@
                                                 <div class="col">
                                                     <a href="">
                                                         <p>Join Class</p>
-                                                    </a>
+                                                    </a
                                                 </div>
                                                 <div class="col">
                                                     <a href="" class="a-link"><i data-feather="arrow-up-right"

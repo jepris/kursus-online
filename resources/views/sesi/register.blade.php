@@ -25,7 +25,7 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input class="form-control" value="{{ Session::get('name') }}" type="text" id="name"
-                            name="name">
+                            name="name" autofocus>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
