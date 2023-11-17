@@ -268,7 +268,7 @@
                                                 <div class="col">
                                                     <a href="">
                                                         <p>Join Class</p>
-                                                    </a
+                                                    </a>
                                                 </div>
                                                 <div class="col">
                                                     <a href="" class="a-link"><i data-feather="arrow-up-right"
