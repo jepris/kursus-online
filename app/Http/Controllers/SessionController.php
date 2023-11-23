@@ -53,7 +53,7 @@ class SessionController extends Controller
         Session::flash('name', $request->name);
         Session::flash('email', $request->email);
         $request->validate([
-            'name' => 'required|email:dns',
+            'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ],[
@@ -69,6 +69,7 @@ class SessionController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make( $request->password )
+         
         ];
         User::create($data);
 
