@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [KursusController::class, 'index'])->name('dashboard');
 
-// tambah data
+// tambah data course
 Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata');
 Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');
 
@@ -33,3 +34,8 @@ Route::get('/sesi/logout',[SessionController::class, 'logout']);
 // register
 Route::get('/sesi/register',[SessionController::class, 'register']);
 Route::post('/sesi/create',[SessionController::class, 'create']);
+
+
+//tambahdata siswa
+Route::get('/tambahdatasiswa', [SiswaController::class, 'tambahdatasiswa'])->name('tambahdatasiswa');
+Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->name('insertdatasiswa');

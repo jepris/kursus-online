@@ -267,7 +267,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <a href="">
-                                                        <p>Join Class</p>
+                                                        <a href="/tambahdatasiswa">Join Class</a>
                                                     </a>
                                                 </div>
                                                 <div class="col">
