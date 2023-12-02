@@ -47,7 +47,7 @@
             <form class="d-flex" role="search justify-content-end">
                 <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
                     Search</button>
-                <button class="btn btn-outline-dark" type="submit">Join Our Course</button>
+                <a class="btn btn-outline-dark" href="/tambahdatasiswa" type="submit">Join Our Course</a>
                 {{-- <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a> --}}
 
                 @if (auth()->check())
@@ -57,12 +57,14 @@
                             {{ auth()->user()->name }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><button class="dropdown-item" type="button" disabled>{{ auth()->user()->name }}</button></li>
+                            <li><button class="dropdown-item" type="button"
+                                    disabled>{{ auth()->user()->name }}</button></li>
                             <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
                         </ul>
                     </div>
                 @else
-                    <a class="btn btn-light ms-3" href="/sesi">Login</a>
+                    <a href="/sesi" class="btn btn-light ms-3" data-bs-toggle="modal"
+                        data-bs-target="#login">Login</a>
                 @endif
             </form>
         </nav>
@@ -267,7 +269,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <a href="">
-                                                        <a href="/tambahdatasiswa">Join Class</a>
+                                                        <a href="/tambahdatasiswa" data-bs-toggle="modal" data-bs-target="#joinkelas">Join Class</a>
                                                     </a>
                                                 </div>
                                                 <div class="col">
@@ -286,12 +288,148 @@
         </div>
     </section>
 
+
+    {{-- modal --}}
+    {{-- modal login --}}
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <h1 class="text-center mt-2">Login</h1>
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <div class="card" style="margin-top: 70px">
+                            <form style="margin: 30px" action="/sesi/login" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input class="form-control" value="{{ Session::get('email') }}" type="email"
+                                        id="email" name="email" autofocus>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input class="form-control" type="password" id="password" name="password">
+                                </div>
+                                <div class="nb-3 d-grid">
+                                    <button name="submit" type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </form>
+                            <div class="register text-end mb-3 me-3">
+                                <a href="/sesi/register" data-bs-toggle="modal" data-bs-target="#registrasi">don't
+                                    have account? Create here!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- modal registrasi --}}
+    <div class="modal fade" id="registrasi" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <div class="container d-flex justify-content-center">
+                            <div class="col-9">
+                                <h1 class="text-center mt-2">Register</h1>
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                <div class="card" style="margin-top: 40px">
+                                    <form style="margin: 30px" action="/sesi/create" method="POST">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input class="form-control" value="{{ Session::get('name') }}"
+                                                type="text" id="name" name="name" autofocus>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input class="form-control" value="{{ Session::get('email') }}"
+                                                type="email" id="email" name="email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input class="form-control" type="password" id="password"
+                                                name="password">
+                                        </div>
+                                        <div class="nb-3 d-grid">
+                                            <button name="submit" type="submit"
+                                                class="btn btn-primary">Register</button>
+                                        </div>
+                                    </form>
+                                    <div class="register text-end mb-3 me-3">
+                                        <a href="/sesi" data-bs-toggle="modal" data-bs-target="#login">have
+                                            account? Login Here!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="joinkelas" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <div class="container">
+                            <h1 class="text-center mt-3">Join Kelas</h1>
+                            <div class="card" style="margin-top: 70px">
+                                <form style="margin: 30px" action="/insertdatasiswa" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Nama</label>
+                                        <input class="form-control" type="text" id="name" name="name"
+                                            placeholder="Masukkan Nama Anda">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">No. telpon</label>
+                                        <input type="number" name="notelp" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            placeholder="Masukkan No Telpon">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+                                        <select class="form-select" name="jeniskelamin" id="floatingSelectGrid">
+                                            <option selected disabled>--</option>
+                                            <option value="1">Pria</option>
+                                            <option value="2">Wanita</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     {{-- bootstrap javascript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
-    {{-- ioicons javascript --}}
+    {{-- ioicons javascript --}}    
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
