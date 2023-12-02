@@ -27,15 +27,15 @@ Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambah
 Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');
 
 // login
-Route::get('/sesi',[SessionController::class, 'index']);
+Route::get('/sesi',[SessionController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/sesi/login',[SessionController::class, 'login']);
 Route::get('/sesi/logout',[SessionController::class, 'logout']);
 
 // register
-Route::get('/sesi/register',[SessionController::class, 'register']);
+Route::get('/sesi/register',[SessionController::class, 'register'])->middleware('guest');
 Route::post('/sesi/create',[SessionController::class, 'create']);
 
 
 //tambahdata siswa
-Route::get('/tambahdatasiswa', [SiswaController::class, 'tambahdatasiswa'])->name('tambahdatasiswa');
+Route::get('/tambahdatasiswa', [SiswaController::class, 'tambahdatasiswa'])->name('tambahdatasiswa')->middleware('auth');
 Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->name('insertdatasiswa');
