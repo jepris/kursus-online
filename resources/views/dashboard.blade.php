@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse d-inline justify-content-center" id="navbarScroll">
                 <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Course</a>
+                        <a class="nav-link" aria-current="page" href="#course">Course</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Master class</a>

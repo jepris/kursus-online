@@ -34,6 +34,6 @@ class KursusController extends Controller
        
         $data->cover = $gambar;
         $data->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('Success','Kursus Berhasil Di Tambahkan');;
     }
 }
