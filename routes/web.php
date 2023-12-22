@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
+// use App\Models\Siswa;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +17,16 @@ use App\Http\Controllers\SiswaController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     $data = Siswa::all();
+//     return view('dashboard', compact('data'));
+// });
 
+Route::get('/', [KursusController::class, 'index']);
 Route::get('/dashboard', [KursusController::class, 'index'])->name('dashboard');
 
 // tambah data course
-Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata');
+Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata')->middleware('admin');
 Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');
 
 // login
@@ -38,4 +41,10 @@ Route::post('/sesi/create',[SessionController::class, 'create']);
 
 //tambahdata siswa
 Route::get('/tambahdatasiswa', [SiswaController::class, 'tambahdatasiswa'])->name('tambahdatasiswa')->middleware('auth');
-Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->name('insertdatasiswa');
+Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->name('insertdatasiswa')->middleware('auth');
+
+
+// Route::post('/sesi/create',[SessionController::class, 'create']);
+Route::get('/course', function () {
+    return view('course');
+});

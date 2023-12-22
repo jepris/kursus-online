@@ -39,14 +39,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/tambahdata">List Course </a>
-                    </li>
+                    @can('admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tambahdata">Add List Course </a>
+                        </li>
+                    @endcan
+                    
                 </ul>
             </div>
             <form class="d-flex" role="search justify-content-end">
-                <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
-                    Search</button>
+                {{-- <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
+                    Search</button> --}}
                 <a class="btn btn-outline-dark" href="/tambahdatasiswa" type="submit">Join Our Course</a>
                 {{-- <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a> --}}
 
@@ -276,11 +279,16 @@
                                                     <a href="" class="a-link"><i data-feather="arrow-up-right"
                                                             class="icon"></i></a>
                                                 </div>
+                                                {{-- <button type="button" class="btn btn-info">Info</button> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn btn-warning" type="button"><a href="/course">View All</a></button>
+                              </div>
+                              {{-- <a class="btn btn-outline-dark" href="/" type="submit">View All</a> --}}
                         </div>
                     </div>
                 </div>
@@ -379,7 +387,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="modal fade" id="joinkelas" tabindex="-1" aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

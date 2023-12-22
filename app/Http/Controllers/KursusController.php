@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class KursusController extends Controller
 {
     public function index(){
-        $data = Kursus::all();
+        // $data = Kursus::all()->paginate(3);
+        $data = Kursus::latest()->paginate(3);
         return view('dashboard', compact('data'));
     }
 
