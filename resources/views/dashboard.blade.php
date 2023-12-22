@@ -285,8 +285,8 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-warning" type="button"><a href="/course">View All</a></button>
+                            <div class="view d-grid gap-2 d-md-block">
+                                <button class="viewall btn btn-primary" type="button"><a class="text-light" href="/course">View All </a><ion-icon class="ardown" name="arrow-forward-circle-outline"></ion-icon></button>
                               </div>
                               {{-- <a class="btn btn-outline-dark" href="/" type="submit">View All</a> --}}
                         </div>
