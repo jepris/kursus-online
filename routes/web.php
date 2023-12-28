@@ -48,3 +48,9 @@ Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->na
 Route::get('/course', function () {
     return view('course');
 });
+
+
+// bagian About
+Route::get('/about', function () {
+    return view('about');
+});

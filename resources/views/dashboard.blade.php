@@ -31,20 +31,20 @@
                         <a class="nav-link" aria-current="page" href="#course">Course</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Master class</a>
+                        <a class="nav-link" href="/course">Master class</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">How its work</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="/about">About</a>
                     </li>
                     @can('admin')
                         <li class="nav-item">
                             <a class="nav-link" href="/tambahdata">Add List Course </a>
                         </li>
                     @endcan
-                    
+
                 </ul>
             </div>
             <form class="d-flex" role="search justify-content-end">
@@ -272,7 +272,8 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <a href="">
-                                                        <a href="/tambahdatasiswa" data-bs-toggle="modal" data-bs-target="#joinkelas">Join Class</a>
+                                                        <a href="/tambahdatasiswa" data-bs-toggle="modal"
+                                                            data-bs-target="#joinkelas">Join Class</a>
                                                     </a>
                                                 </div>
                                                 <div class="col">
@@ -286,9 +287,11 @@
                                 </div>
                             @endforeach
                             <div class="view d-grid gap-2 d-md-block">
-                                <button class="viewall btn btn-primary" type="button"><a class="text-light" href="/course">View All </a><ion-icon class="ardown" name="arrow-forward-circle-outline"></ion-icon></button>
-                              </div>
-                              {{-- <a class="btn btn-outline-dark" href="/" type="submit">View All</a> --}}
+                                <button class="viewall btn btn-primary" type="button"><a class="text-light"
+                                        href="/course">View All </a><ion-icon class="ardown"
+                                        name="arrow-forward-circle-outline"></ion-icon></button>
+                            </div>
+                            {{-- <a class="btn btn-outline-dark" href="/" type="submit">View All</a> --}}
                         </div>
                     </div>
                 </div>
@@ -387,7 +390,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="joinkelas" tabindex="-1" aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -437,7 +440,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
-    {{-- ioicons javascript --}}    
+    {{-- ioicons javascript --}}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
@@ -448,17 +451,15 @@
 
     {{-- timer javascript --}}
     <script>
-        // Wait for the DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the alert element
+        document.addEventListener("DOMContentLoaded", function() {
+        // Set a timeout to hide the alert after 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+            // Get the alert element  
             var alertElement = document.getElementById('myAlert');
-
-            // Set a timeout to hide the alert after 20 seconds (20000 milliseconds)
-            setTimeout(function() {
-                // Add the 'hidden' class to hide the alert
-                alertElement.classList.add('hidden');
-            }, 3000); // 20 seconds in milliseconds
-        });
+            // Add the 'd-none' class to hide the alert
+            alertElement.classList.add('d-none');
+        }, 3000); // 3 seconds in milliseconds
+    });
     </script>
 </body>
 

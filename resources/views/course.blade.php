@@ -31,7 +31,7 @@
                         <a class="nav-link" aria-current="page" href="#course">Course</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Master class</a>
+                        <a class="nav-link" href="/">Home Page</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">How its work</a>
