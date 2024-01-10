@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Siswa;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\SiswaController;
 // use App\Models\Siswa;
 
 /*
@@ -45,8 +47,22 @@ Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->na
 
 
 // Route::post('/sesi/create',[SessionController::class, 'create']);
-Route::get('/course', function () {
-    return view('course');
+// Route::get('/course', function (Category $category) {
+//     //$data = Category::all();
+
+//     return view('course',[
+//         'title'=> $category->name,
+//         'kursus'=> $category->kursus,
+//         'category'=>$category->name
+//     ]);
+//     //return view('course', compact('data'));
+// });
+Route::get('/course', function (Category $cat) {
+    //$data = Category::all();
+    return view('course',[
+        'categories'=>Category::all(),
+    ]);
+    //return view('course', compact('data'));
 });
 
 

@@ -49,9 +49,6 @@
             <form class="d-flex" role="search justify-content-end">
                 <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
                     Search</button>
-
-                {{-- <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a> --}}
-
                 @if (auth()->check())
                     <div class="dropdown ms-3">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -73,50 +70,29 @@
 
         {{-- untuk kelas website --}}
         <section class="mb-5">
-            <h2 class="judulkelas">Web Developer</h2>
-            <hr class="border border-danger border-2 opacity-50">
-            <div class="class-web d-flex ms-5">
+            @foreach ($categories as $category)
+                <h2 class="judulkelas">{{ $category->name }}</h2>
+                <hr class="border border-danger border-2 opacity-50">
+                @foreach ($category->kursus as $kursus)
+                    {{-- <h2>{{ $kursus->judul }}</h2> --}}
+                <div class="class-web d-flex ms-5"></div>
                 <div class="card" style="width: 18rem;">
                     <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <h5 class="card-title">{{ $kursus->judul }}</h5>
+                        <p class="card-text">{{$kursus->description}}</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endforeach
+            {{-- <h2 class="judulkelas">Web Developer</h2> --}}
+           
+            
         </section>
 
         {{-- untuk kelas mobile --}}
-        <section class="mt-3 mb-5">
+        {{-- <section class="mt-3 mb-5">
             <h2 class="judulkelas">Mobile Developer</h2>
             <hr class="border border-danger border-2 opacity-50">
             <div class="class-web d-flex ms-5">
@@ -157,10 +133,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         {{-- untuk kelas UI/UX --}}
-        <section>
+        {{-- <section>
             <h2 class="judulkelas">UI/UX design</h2>
             <hr class="border border-danger border-2 opacity-50">
             <div class="class-web d-flex ms-5">
@@ -201,7 +177,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
     </div>
     {{-- bootstrap javascript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
