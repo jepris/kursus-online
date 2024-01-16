@@ -62,6 +62,7 @@
                         <ul class="dropdown-menu">
                             <li><button class="dropdown-item" type="button"
                                     disabled>{{ auth()->user()->name }}</button></li>
+                            <li><a href="/" class="dropdown-item" type="button">Admin</a></li>
                             <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
                         </ul>
                     </div>
