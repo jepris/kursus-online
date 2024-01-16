@@ -12,6 +12,7 @@
 
 <body>
     <div class="container">
+        @csrf
         <h1 class="text-center mt-3">Tambah Kursus Online</h1>
             <div class="card" style="margin-top: 70px">
                 <form style="margin: 30px" action="/insertdata" method="POST" enctype="multipart/form-data">
@@ -25,6 +26,26 @@
                         <input type="text" name="judul" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             placeholder="Masukkan Judul Kursus">
                     </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" name="category_id" >
+                            @foreach ($category as $categories)
+                                <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                            @endforeach
+                            
+                          </select>
+                    </div>
+                    {{-- <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Dropdown link
+                        </a>
+                      
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div> --}}
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Deskripsi</label>
                         <input type="textarea" name="description" class="form-control" id="exampleInputPassword1"

@@ -240,23 +240,15 @@
                         <h2>Most Popular Course</h2>
                         <p>start an incredible UI/UX Design Course with us. You can learn the most requested digital
                             courses.</p>
-                        <div class="row">
-                            <div class="col">
-                                <div class="online1">
-                                    <p class="text-center">UI/UX Design</p>
-                                </div>
+                            <div class="row">
+                                @foreach ($category as $cate)
+                                     <div class="col">
+                                        <div class="online1">
+                                            <p class="text-center">{{ $cate->name }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div class="col">
-                                <div class="online2">
-                                    <p class="text-center">UI Design</p>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="online3">
-                                    <p class="text-center">UI/UX Design</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-8">
                         <div class="course d-flex overflow-x-auto">
@@ -280,7 +272,7 @@
                                                     <a href="" class="a-link"><i data-feather="arrow-up-right"
                                                             class="icon"></i></a>
                                                 </div>
-                                                {{-- <button type="button" class="btn btn-info">Info</button> --}}
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +283,7 @@
                                         href="/course">View All </a><ion-icon class="ardown"
                                         name="arrow-forward-circle-outline"></ion-icon></button>
                             </div>
-                            {{-- <a class="btn btn-outline-dark" href="/" type="submit">View All</a> --}}
+                           
                         </div>
                     </div>
                 </div>

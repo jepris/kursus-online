@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\CategoryController;
 // use App\Models\Siswa;
 
 /*
@@ -57,14 +58,15 @@ Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->na
 //     ]);
 //     //return view('course', compact('data'));
 // });
-Route::get('/course', function (Category $cat) {
-    //$data = Category::all();
-    return view('course',[
-        'categories'=>Category::all(),
-    ]);
-    //return view('course', compact('data'));
-});
 
+// Route::get('/course', function (Category $cat) {
+//     //$data = Category::all();
+//     return view('course',[
+//         'categories'=>Category::all(),
+//     ]);
+//     //return view('course', compact('data'));
+// });
+Route::get('/course', [CategoryController::class, 'index']);
 
 // bagian About
 Route::get('/about', function () {
