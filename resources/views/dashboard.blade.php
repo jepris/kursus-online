@@ -34,7 +34,7 @@
                         <a class="nav-link" href="/course">Master class</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">How its work</a>
+                        <a class="nav-link" href="/detail">How its work</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
