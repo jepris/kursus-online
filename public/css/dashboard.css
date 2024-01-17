@@ -319,3 +319,18 @@
     font-weight: bolder;
     color: black;
 }
+
+.scroll-x {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.course-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.card {
+    margin-right: 16px;
+}
