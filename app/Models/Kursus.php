@@ -15,5 +15,20 @@ class Kursus extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    // public function users(){
+    //     return $this->belongsToMany(User::class);
+    // }
+    public function users()
+    {
+        // return $this->belongsToMany(User::class, 'user_kursus', 'kursus_id', 'user_id')
+        return $this->belongsToMany(User::class, 'user_kursus')
+                    ->using(UserKursus::class)
+                    ->withTimestamps();
+        
+    }
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class, 'user_kursus', 'kursus_id', 'user_id');
+    // }
 }
  

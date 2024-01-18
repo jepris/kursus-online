@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\User as UserModel;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Kursus;
+use App\Models\UserKursus;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -43,4 +46,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function kursus()
+    {
+        // return $this->belongsToMany(Kursus::class, 'user_kursus', 'user_id', 'kursus_id')
+        return $this->belongsToMany(Kursus::class, 'user_kursus')
+                    ->using(UserKursus::class)
+                    ->withTimestamps();
+
+
+        // return $this->belongsToMany(Kursus::class)
+        //             ->using(UserKursus::class)
+        //             ->withPivot(['status']);
+
+    }
 }

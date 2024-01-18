@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Kursus;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class SessionController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
@@ -85,5 +87,26 @@ class SessionController extends Controller
             // kalau otentikasi gagal
             return back()->with('error', 'Username dan Password yang dimasukkan tidak valid');        
         }
+    }
+
+    public function joinKursus(Request $request, $kursusId)
+    {
+        // $user = Auth::user();
+        $user = Auth::user()->with('kursus')->first();
+        $kursus = Kursus::find($kursusId);
+        //logic dipakai jika nilai kursus tidak berisi null
+        // if ($user->kelas->contains($kursus)) {
+        //     $message = 'You are already a member of the "' . $kursus->nama . '" class.';
+        //     return redirect('dashboard')->with('status', $message);
+        // }
+        if ($user && $user->kursus && $user->kursus->contains($kursus)) {
+            // Pengguna sudah tergabung dengan kelas
+            $errormessage = 'You are already a member of the "' . $kursus->judul . '" class.';
+            return redirect('dashboard')->with('error', $errormessage);
+        }
+        
+        $user->kursus()->attach($kursus);
+        $successMessage = 'You have joined the "' . $kursus->judul . '" class successfully.';
+        return redirect('dashboard')->with('success',$successMessage);
     }
 }

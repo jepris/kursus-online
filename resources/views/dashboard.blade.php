@@ -18,6 +18,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if (session('error'))
+            <div class="alert alert-danger" id="myAlert">
+                {{ session('error') }}
+            </div>
+        @endif
         {{-- navbar --}}
         <nav class="navbar navbar-expand-lg mt-3 mb-4">
             <a class="navbar-brand" dissable href="/dashboard">Logo. </a>
@@ -50,7 +55,7 @@
             <form class="d-flex" role="search justify-content-end">
                 {{-- <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
                     Search</button> --}}
-                <a class="btn btn-outline-dark" href="/tambahdatasiswa" type="submit">Join Our Course</a>
+                <a class="btn btn-outline-dark" href="/course" type="submit">Join Our Course</a>
                 {{-- <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a> --}}
 
                 @if (auth()->check())
@@ -61,8 +66,8 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><button class="dropdown-item" type="button"
-                                    disabled>{{ auth()->user()->name }}</button></li>
-                            <li><a href="/" class="dropdown-item" type="button">Admin</a></li>
+                                    disabled>{{ auth()->user()->role }}</button></li>
+                            {{-- <li><a href="/" class="dropdown-item" type="button">Admin</a></li> --}}
                             <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
                         </ul>
                     </div>
@@ -264,10 +269,15 @@
                                         <div class="card-button">
                                             <div class="row">
                                                 <div class="col">
-                                                    <a href="">
+                                                    {{-- //testing --}}
+                                                    {{-- <a href="">
                                                         <a href="/tambahdatasiswa" data-bs-toggle="modal"
                                                             data-bs-target="#joinkelas">Join Class</a>
-                                                    </a>
+                                                    </a> --}}
+                                                    <form method="POST" action="{{ route('join.kursus', ['kursusId' => $row->id]) }}">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-primary">Join</button>
+                                                    </form>
                                                 </div>
                                                 <div class="col">
                                                     <a href="" class="a-link"><i data-feather="arrow-up-right"
