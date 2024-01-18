@@ -101,12 +101,12 @@ class UserController extends Controller
         // }
         if ($user && $user->kursus && $user->kursus->contains($kursus)) {
             // Pengguna sudah tergabung dengan kelas
-            $errormessage = 'You are already a member of the "' . $kursus->judul . '" class.';
+            $errormessage = 'You are already a member of the "' . $kursus->judul . '" course.';
             return redirect('dashboard')->with('error', $errormessage);
         }
         
         $user->kursus()->attach($kursus);
-        $successMessage = 'You have joined the "' . $kursus->judul . '" class successfully.';
+        $successMessage = 'You have joined the "' . $kursus->judul . '" course successfully.';
         return redirect('dashboard')->with('success',$successMessage);
     }
 }
