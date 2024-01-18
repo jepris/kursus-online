@@ -39,7 +39,7 @@
                         <a class="nav-link" href="/course">Master class</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">How its work</a>
+                        <a class="nav-link" href="/detail">How its work</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
@@ -67,7 +67,10 @@
                         <ul class="dropdown-menu">
                             <li><button class="dropdown-item" type="button"
                                     disabled>{{ auth()->user()->role }}</button></li>
+<<<<<<< HEAD
                             {{-- <li><a href="/" class="dropdown-item" type="button">Admin</a></li> --}}
+=======
+>>>>>>> d1c21108b3646f5adfa1bf071a44cf5cbaba71b4
                             <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
                         </ul>
                     </div>

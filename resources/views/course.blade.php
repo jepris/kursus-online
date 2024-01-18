@@ -69,26 +69,23 @@
         </nav>
 
         {{-- untuk kelas website --}}
-        <section class="mb-5">
+        <section class="mb-5 scroll-x">
             @foreach ($categories as $category)
                 <h2 class="judulkelas">{{ $category->name }}</h2>
                 <hr class="border border-danger border-2 opacity-50">
-                @foreach ($category->kursus as $kursus)
-                    {{-- <h2>{{ $kursus->judul }}</h2> --}}
-                <div class="class-web d-flex ms-5"></div>
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $kursus->judul }}</h5>
-                        <p class="card-text">{{$kursus->description}}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+                <div class="course-container">
+                    @foreach ($category->kursus as $kursus)
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('/cover_image/' . $kursus->cover) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $kursus->judul }}</h5>
+                                <p class="card-text">{{$kursus->description}}</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                @endforeach
             @endforeach
-            {{-- <h2 class="judulkelas">Web Developer</h2> --}}
-           
-            
         </section>
 
         {{-- untuk kelas mobile --}}
