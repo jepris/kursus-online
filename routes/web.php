@@ -62,7 +62,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Rute untuk mendaftar ke kelas
     Route::post('/join/{kursusId}', [UserController::class, 'joinKursus'])->name('join.kursus');
+    Route::get('/kursus/{kursusId}/users', [UserController::class, 'showKursusUsers'])->name('showKursusUsers');
 });
+
 
 
 

@@ -102,11 +102,20 @@ class UserController extends Controller
         if ($user && $user->kursus && $user->kursus->contains($kursus)) {
             // Pengguna sudah tergabung dengan kelas
             $errormessage = 'You are already a member of the "' . $kursus->judul . '" course.';
-            return redirect('dashboard')->with('error', $errormessage);
+            return redirect()->back()->with('error', $errormessage);
         }
         
         $user->kursus()->attach($kursus);
         $successMessage = 'You have joined the "' . $kursus->judul . '" course successfully.';
-        return redirect('dashboard')->with('success',$successMessage);
+        return redirect()->back()->with('success',$successMessage);
+    }
+
+    //nampilin data user course
+    public function showKursusUsers($kursusId)
+    {
+        $kursus = Kursus::findOrFail($kursusId);
+        $users = $kursus->users;
+
+        return view('kursus_users', compact('kursus', 'users'));
     }
 }

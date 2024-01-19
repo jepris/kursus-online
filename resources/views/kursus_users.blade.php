@@ -73,8 +73,20 @@
             </form>
         </nav>
 
+        <h1>Users in {{ $kursus->judul }} course</h1>
+
+        @if($users->count() > 0)
+            <ul>
+                @foreach($users as $user)
+                    <li>{{ $user->name }}</li>
+                @endforeach
+            </ul>
+        @else
+            <p>No users have joined {{ $kursus->judul }} yet.</p>
+        @endif
+
         {{-- untuk kelas website --}}
-        <section class="mb-5 scroll-x">
+        {{-- <section class="mb-5 scroll-x">
             @foreach ($categories as $category)
                 <h2 class="judulkelas">{{ $category->name }}</h2>
                 <hr class="border border-danger border-2 opacity-50">
@@ -85,23 +97,19 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $kursus->judul }}</h5>
                                 <p class="card-text">{{$kursus->description}}</p>
-                                <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-primary">View User</a>
-                                <br><br>
+                                <a href="#" class="btn btn-primary">Detail</a>
                                 {{-- <a href="#" class="btn btn-primary">join</a> --}}
-                                <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
+                                {{-- <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
                                     @csrf
-                                    {{-- <button type="submit" class="btn btn-sm btn-primary">Join</button> --}}
-                                    <button type="submit" class="btn btn-primary">Join</button>
+                                    <button type="submit" class="btn btn-sm btn-primary">Join</button>
                                 </form>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endforeach
-        </section>
+        </section> --}} 
     </div>
-
-
     {{-- bootstrap javascript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
@@ -118,17 +126,18 @@
 
     {{-- timer javascript --}}
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        // Set a timeout to hide the alert after 3 seconds (3000 milliseconds)
-        setTimeout(function() {
-            // Get the alert element  
+        // Wait for the DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the alert element
             var alertElement = document.getElementById('myAlert');
-            // Add the 'd-none' class to hide the alert
-            alertElement.classList.add('d-none');
-        }, 3000); // 3 seconds in milliseconds
-    });
-    </script>
 
+            // Set a timeout to hide the alert after 20 seconds (20000 milliseconds)
+            setTimeout(function() {
+                // Add the 'hidden' class to hide the alert
+                alertElement.classList.add('hidden');
+            }, 3000); // 20 seconds in milliseconds
+        });
+    </script>
 </body>
 
 </html>
