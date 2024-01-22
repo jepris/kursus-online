@@ -74,16 +74,32 @@
         </nav>
 
         <h1>Users in {{ $kursus->judul }} course</h1>
-
-        @if($users->count() > 0)
-            <ul>
-                @foreach($users as $user)
-                    <li class="list-course">{{ $user->name }}</li>
-                @endforeach
-            </ul>
-        @else
-            <p>No users have joined {{ $kursus->judul }} yet.</p>
+        @if ($users->count() > 0)
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">No. telepon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach ($users as $user)
+                            <th scope="row">{{ $user->id}}</th>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->jeniskelamin }}</td>
+                            <td>{{ $user->notelp }}</td>
+                    </tr>
+        @endforeach
+    @else
+        <p>No users have joined {{ $kursus->judul }} yet.</p>
         @endif
+        </tbody>
+        </table>
+
+
     </div>
     {{-- bootstrap javascript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
