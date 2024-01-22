@@ -88,8 +88,8 @@
 }
 
 .card-img-top{
-    height: 105px;
-    border-radius: 10px;
+    height: 110px;
+    object-fit: cover;
 }
 
 .card-img-topside{

@@ -72,32 +72,34 @@
                 @endif
             </form>
         </nav>
-
+        
         <h1>Users in {{ $kursus->judul }} course</h1>
         @if ($users->count() > 0)
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">No. telepon</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        @foreach ($users as $user)
-                            <th scope="row">{{ $user->id}}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->jeniskelamin }}</td>
-                            <td>{{ $user->notelp }}</td>
-                    </tr>
-        @endforeach
-    @else
-        <p>No users have joined {{ $kursus->judul }} yet.</p>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered border border-dark border-2">
+                    <thead class="table-warning">
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">No. telepon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach ($users as $user)
+                                <th scope="row">{{ $user->id }}</th>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->jeniskelamin }}</td>
+                                <td>{{ $user->notelp }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+         @else
+            <p>No users have joined {{ $kursus->judul }} yet.</p>
         @endif
-        </tbody>
-        </table>
+    </div>
 
 
     </div>

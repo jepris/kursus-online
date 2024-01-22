@@ -28,7 +28,6 @@ use App\Http\Controllers\CategoryController;
 Route::get('/', [KursusController::class, 'index']);
 Route::get('/dashboard', [KursusController::class, 'index'])->name('dashboard');
 
-
 // tambah data course
 Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata')->middleware('admin');
 Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');

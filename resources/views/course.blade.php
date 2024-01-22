@@ -80,25 +80,133 @@
                 <hr class="border border-danger border-2 opacity-50">
                 <div class="course-container">
                     @foreach ($category->kursus as $kursus)
-                        <div class="card" style="width: 18rem;">
+                        <div class="card border border-2 border-dark-subtle" style="width: 18rem;">
                             <img src="{{ asset('/cover_image/' . $kursus->cover) }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $kursus->judul }}</h5>
                                 <p class="card-text">{{$kursus->description}}</p>
-                                <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-primary">View User</a>
-                                <br><br>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-secondary">View User</a>
+                                    </div>
+                                    <div class="col">
+                                        <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
+                                            @csrf
+                                            {{-- <button type="submit" class="btn btn-sm btn-primary">Join</button> --}}
+                                            <button type="submit" class="btn btn-success">Join</button>
+                                        </form>
+                                    </div>
+                                </div>
                                 {{-- <a href="#" class="btn btn-primary">join</a> --}}
-                                <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
-                                    @csrf
-                                    {{-- <button type="submit" class="btn btn-sm btn-primary">Join</button> --}}
-                                    <button type="submit" class="btn btn-primary">Join</button>
-                                </form>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @endforeach
         </section>
+    </div>
+
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <h1 class="text-center mt-2">Login</h1>
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <div class="card" style="margin-top: 70px">
+                            <form style="margin: 30px" action="/sesi/login" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input class="form-control" value="{{ Session::get('email') }}" type="email"
+                                        id="email" name="email" autofocus>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input class="form-control" type="password" id="password" name="password">
+                                </div>
+                                <div class="nb-3 d-grid">
+                                    <button name="submit" type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </form>
+                            <div class="register text-end mb-3 me-3">
+                                <a href="/sesi/register" data-bs-toggle="modal" data-bs-target="#registrasi">don't
+                                    have account? Create here!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- modal registrasi --}}
+    <div class="modal fade" id="registrasi" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <div class="container d-flex justify-content-center">
+                            <div class="col-9">
+                                <h1 class="text-center mt-2">Register</h1>
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                <div class="card" style="margin-top: 40px">
+                                    <form style="margin: 30px" action="/sesi/create" method="POST">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input class="form-control" value="{{ Session::get('name') }}"
+                                                type="text" id="name" name="name" autofocus>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">No. telpon</label>
+                                            <input type="number" name="notelp" class="form-control"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                placeholder="Masukkan No Telpon">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+                                            <select class="form-select" name="jeniskelamin" id="floatingSelectGrid">
+                                                <option selected disabled>--</option>
+                                                <option value="1">Pria</option>
+                                                <option value="2">Wanita</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input class="form-control" value="{{ Session::get('email') }}"
+                                                type="email" id="email" name="email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input class="form-control" type="password" id="password"
+                                                name="password">
+                                        </div>
+                                        <div class="nb-3 d-grid">
+                                            <button name="submit" type="submit"
+                                                class="btn btn-primary">Register</button>
+                                        </div>
+                                    </form>
+                                    <div class="register text-end mb-3 me-3">
+                                        <a href="/sesi" data-bs-toggle="modal" data-bs-target="#login">have
+                                            account? Login Here!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
