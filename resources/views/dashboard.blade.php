@@ -67,10 +67,6 @@
                         <ul class="dropdown-menu">
                             <li><button class="dropdown-item" type="button"
                                     disabled>{{ auth()->user()->role }}</button></li>
-<<<<<<< HEAD
-                            {{-- <li><a href="/" class="dropdown-item" type="button">Admin</a></li> --}}
-=======
->>>>>>> b35f054ea1f164ab3b5598ec24363138947deeb9
                             <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
                         </ul>
                     </div>
