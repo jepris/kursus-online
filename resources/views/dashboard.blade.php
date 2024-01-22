@@ -366,6 +366,20 @@
                                                 type="text" id="name" name="name" autofocus>
                                         </div>
                                         <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">No. telpon</label>
+                                            <input type="number" name="notelp" class="form-control"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                placeholder="Masukkan No Telpon">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+                                            <select class="form-select" name="jeniskelamin" id="floatingSelectGrid">
+                                                <option selected disabled>--</option>
+                                                <option value="1">Pria</option>
+                                                <option value="2">Wanita</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input class="form-control" value="{{ Session::get('email') }}"
                                                 type="email" id="email" name="email">
