@@ -88,11 +88,11 @@ class UserController extends Controller
             return back()->with('error', 'Username dan Password yang dimasukkan tidak valid');        
         }
     }
-
+    //metehod untuk melakukan join class
     public function joinKursus(Request $request, $kursusId)
     {
-        // $user = Auth::user();
-        $user = Auth::user()->with('kursus')->first();
+        $user = Auth::user();
+        // $user = Auth::user()->with('kursus')->first();
         $kursus = Kursus::find($kursusId);
         //logic dipakai jika nilai kursus tidak berisi null
         // if ($user->kelas->contains($kursus)) {
@@ -104,7 +104,7 @@ class UserController extends Controller
             $errormessage = 'You are already a member of the "' . $kursus->judul . '" course.';
             return redirect()->back()->with('error', $errormessage);
         }
-        
+        //input data ke dalam tabel pivot
         $user->kursus()->attach($kursus);
         $successMessage = 'You have joined the "' . $kursus->judul . '" course successfully.';
         return redirect()->back()->with('success',$successMessage);
