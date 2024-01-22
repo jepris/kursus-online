@@ -334,3 +334,8 @@
 .card {
     margin-right: 16px;
 }
+
+.list-course{
+    text-decoration: none;
+    list-style: none;
+}

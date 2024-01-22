@@ -78,7 +78,7 @@
         @if($users->count() > 0)
             <ul>
                 @foreach($users as $user)
-                    <li>{{ $user->name }}</li>
+                    <li class="list-course">{{ $user->name }}</li>
                 @endforeach
             </ul>
         @else
