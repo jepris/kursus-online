@@ -24,7 +24,7 @@
             </div>
         @endif
         {{-- navbar --}}
-        <nav class="navbar navbar-expand-lg mt-3 mb-4">
+        <nav class="navbar navbar-expand-lg mt-3">
             <a class="navbar-brand" dissable href="/dashboard">Logo. </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,20 +76,20 @@
         {{-- untuk kelas website --}}
         <section class="mb-5 scroll-x">
             @foreach ($categories as $category)
-                <h2 class="judulkelas">{{ $category->name }}</h2>
+                <h2 class="judulkelas mt-4">{{ $category->name }}</h2>
                 <hr class="border border-danger border-2 opacity-50">
                 <div class="course-container">
                     @foreach ($category->kursus as $kursus)
                         <div class="card border border-2 border-dark-subtle" style="width: 18rem;">
-                            <img src="{{ asset('/cover_image/' . $kursus->cover) }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('/cover_image/' . $kursus->cover) }}" class="card-img-top" alt="null!">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $kursus->judul }}</h5>
-                                <p class="card-text">{{$kursus->description}}</p>
+                                <h5 class="card-title judulcourse d-flex justify-content-center">{{ $kursus->judul }}</h5>
+                                <p class="card-text descript d-flex justify-content-center ">{{$kursus->description}}</p>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col d-flex justify-content-center">
                                         <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-secondary">View User</a>
                                     </div>
-                                    <div class="col">
+                                    <div class="col d-flex justify-content-center">
                                         <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
                                             @csrf
                                             {{-- <button type="submit" class="btn btn-sm btn-primary">Join</button> --}}

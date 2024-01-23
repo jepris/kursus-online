@@ -53,13 +53,19 @@ class UserController extends Controller
 
      public function create(Request $request){
         Session::flash('name', $request->name);
+        Session::flash('notelp', $request->notep);
+        Session::flash('jeniskelamin', $request->jeniskelamin);
         Session::flash('email', $request->email);
         $request->validate([
             'name' => 'required',
+            'notelp' => 'required',
+            'jeniskelamin' => 'required|in:pria,wanita' ,
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ],[
             'name.required' => 'Nama wajib diisi',
+            'notelp.required' => 'Nomer telpon wajib diisi',
+            'jeniskelamin.required' => 'jenis kelamin anda tidak boleh kosong, wajib diisi',
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Silahkan masukkan email yang valid',
             'email.unique' => 'Email sudah pernah digunakan, silahkan pilih email yang lain',
@@ -69,6 +75,8 @@ class UserController extends Controller
 
         $data = [
             'name' => $request->name,
+            'notelp' => $request->notelp,
+            'jeniskelamin' => $request->jeniskelamin,
             'email' => $request->email,
             'password' => Hash::make( $request->password )
          
