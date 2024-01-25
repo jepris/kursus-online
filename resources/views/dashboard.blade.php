@@ -279,7 +279,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="col">
-                                                    <a href="" class="a-link"><i data-feather="arrow-up-right"
+                                                    <a href="{{ url("/kursus/{$row->id}/users")}}" class="a-link"><i data-feather="arrow-up-right"
                                                             class="icon"></i></a>
                                                 </div>
                                                
