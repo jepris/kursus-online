@@ -114,8 +114,10 @@ class UserController extends Controller
         }
         //input data ke dalam tabel pivot
         $user->kursus()->attach($kursus);
+        // $users = $kursus->users;
         $successMessage = 'You have joined the "' . $kursus->judul . '" course successfully.';
         return redirect()->back()->with('success',$successMessage);
+        // return view('kursus_users', compact('kursus', 'users'))->with('success',$successMessage);
     }
 
     //nampilin data user course
@@ -125,5 +127,10 @@ class UserController extends Controller
         $users = $kursus->users;
 
         return view('kursus_users', compact('kursus', 'users'));
+    }
+    public function exitkursus(Kursus $kursus){
+        auth()->user()->kursus()->detach($kursus);
+
+        return redirect('/course')->with('success', 'You are already exit from the Course.');
     }
 }

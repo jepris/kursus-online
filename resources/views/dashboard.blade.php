@@ -375,8 +375,8 @@
                                             <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
                                             <select class="form-select" name="jeniskelamin" id="floatingSelectGrid">
                                                 <option selected disabled>--</option>
-                                                <option value="1">Pria</option>
-                                                <option value="2">Wanita</option>
+                                                <option value="pria">Pria</option>
+                                                <option value="wanita">Wanita</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">

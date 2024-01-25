@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\CategoryController;
+use App\Models\Kursus;
+
 // use App\Models\Siswa;
 
 /*
@@ -62,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     // Rute untuk mendaftar ke kelas
     Route::post('/join/{kursusId}', [UserController::class, 'joinKursus'])->name('join.kursus');
     Route::get('/kursus/{kursusId}/users', [UserController::class, 'showKursusUsers'])->name('showKursusUsers');
+    Route::post('/kursus/{kursus}/exitkursus', [UserController::class, 'exitkursus'])->name('exit.kursus');
 });
 
 

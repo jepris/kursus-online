@@ -74,6 +74,8 @@
         </nav>
         
         <h1>Users in {{ $kursus->judul }} course</h1>
+        <button onclick="goBack()">Back page</button>
+        <br><br>
         @if ($users->count() > 0)
             <div class="table-responsive">
                 <table class="table table-hover table-bordered border border-dark border-2">
@@ -88,7 +90,7 @@
                     <tbody>
                         <tr>
                             @foreach ($users as $user)
-                                <th scope="row">{{ $user->id }}</th>
+                                <th scope="row">{{ $loop->index+1 }}</th>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->jeniskelamin }}</td>
                                 <td>{{ $user->notelp }}</td>
@@ -98,6 +100,13 @@
                 </table>
          @else
             <p>No users have joined {{ $kursus->judul }} yet.</p>
+        @endif
+        @if (auth()->user()->kursus->contains($kursus->id))
+        <form action="{{ route('exit.kursus', $kursus) }}" method="POST">
+            @csrf
+            @method('POST')
+            <button type="submit">Exit Course</button>
+        </form>
         @endif
     </div>
 
@@ -130,6 +139,11 @@
                 alertElement.classList.add('hidden');
             }, 3000); // 20 seconds in milliseconds
         });
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
     </script>
 </body>
 

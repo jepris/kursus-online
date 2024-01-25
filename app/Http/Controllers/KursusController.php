@@ -42,4 +42,9 @@ class KursusController extends Controller
         $data->save();
         return redirect()->route('dashboard')->with('Success','Kursus Berhasil Di Tambahkan');;
     }
+    // public function exitkursus(Kursus $kursus){
+    //     auth()->user()->kursus()->detach($kursus);
+
+    //     return redirect('/course')->with('success', 'Anda telah keluar dari kelas.');
+    // }
 }
