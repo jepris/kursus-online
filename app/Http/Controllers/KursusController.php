@@ -6,6 +6,7 @@ use App\Models\Category;
 use Carbon\Carbon;
 use App\Models\Kursus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KursusController extends Controller
 {
@@ -42,10 +43,9 @@ class KursusController extends Controller
         $data->save();
         return redirect()->route('dashboard')->with('Success','Kursus Berhasil Di Tambahkan');;
     }
+    // public function exitkursus(Kursus $kursus){
+    //     auth()->user()->kursus()->detach($kursus);
+
+    //     return redirect('/course')->with('success', 'Anda telah keluar dari kelas.');
+    // }
 }
-
-// public function exitkursus(Kursus $kursus){
-//     auth()->user()->kursus()->detach($kursus);
-
-//     return redirect('/course')->with('success', 'Anda telah keluar dari kelas.');
-// }
