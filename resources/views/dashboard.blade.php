@@ -155,7 +155,7 @@
                                     <div class="desc-study">
                                         <div class="row">
                                             <div class="col-8">
-                                                <h6 class="mt-3">Study at your own place</h6>
+                                                <h6 class="mt-3 ms-2">Study at your own place</h6>
                                             </div>
                                         </div>
                                         <div class="icon-arrow">
@@ -267,7 +267,7 @@
                                         <p class="card-text">{{ $row->description }}</p>
                                         <div class="card-button">
                                             <div class="row">
-                                                <div class="col">
+                                                <div class="col-7">
                                                     {{-- //testing --}}
                                                     {{-- <a href="">
                                                         <a href="/tambahdatasiswa" data-bs-toggle="modal"
@@ -275,14 +275,13 @@
                                                     </a> --}}
                                                     <form method="POST" action="{{ route('join.kursus', ['kursusId' => $row->id]) }}">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-sm btn-primary">Join</button>
+                                                        <button type="submit" class="join-btn btn btn-primary rounded-pill">Join</button>
                                                     </form>
                                                 </div>
-                                                <div class="col">
+                                                <div class="col-5">
                                                     <a href="{{ url("/kursus/{$row->id}/users")}}" class="a-link"><i data-feather="arrow-up-right"
                                                             class="icon"></i></a>
                                                 </div>
-                                               
                                             </div>
                                         </div>
                                     </div>

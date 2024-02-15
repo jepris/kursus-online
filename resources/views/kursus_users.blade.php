@@ -72,9 +72,19 @@
                 @endif
             </form>
         </nav>
-        
-        <h1>Users in {{ $kursus->judul }} course</h1>
-        <button onclick="goBack()">Back page</button>
+        <div class="row">
+            <div class="col">
+                <button onclick="goBack()" class="btn btn-danger mb-3">Back page</button>
+            </div>
+            <div class="col-10 me-5">
+                <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
+                    @csrf
+                    {{-- <button type="submit" class="btn btn-sm btn-primary">Join</button> --}}
+                    <button type="submit" class="btn btn-success">Join</button>
+                </form>
+            </div>
+        </div>
+            <h1>Users in {{ $kursus->judul }} course</h1>
         <br><br>
         @if ($users->count() > 0)
             <div class="table-responsive">
@@ -90,23 +100,23 @@
                     <tbody>
                         <tr>
                             @foreach ($users as $user)
-                                <th scope="row">{{ $loop->index+1 }}</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->jeniskelamin }}</td>
                                 <td>{{ $user->notelp }}</td>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-         @else
-            <p>No users have joined {{ $kursus->judul }} yet.</p>
+        @endforeach
+        </tbody>
+        </table>
+    @else
+        <p>No users have joined {{ $kursus->judul }} yet.</p>
         @endif
         @if (auth()->user()->kursus->contains($kursus->id))
-        <form action="{{ route('exit.kursus', $kursus) }}" method="POST">
-            @csrf
-            @method('POST')
-            <button type="submit">Exit Course</button>
-        </form>
+            <form action="{{ route('exit.kursus', $kursus) }}" method="POST">
+                @csrf
+                @method('POST')
+                <button type="submit">Exit Course</button>
+            </form>
         @endif
     </div>
 
