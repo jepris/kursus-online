@@ -22,70 +22,50 @@ use App\Models\Kursus;
 |
 */
 
-// Route::get('/', function () {
-//     $data = Siswa::all();
-//     return view('dashboard', compact('data'));
-// });
 
-Route::get('/', [KursusController::class, 'index']);
-Route::get('/dashboard', [KursusController::class, 'index'])->name('dashboard');
-
-// tambah data course
-Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata')->middleware('admin');
-Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');
-
-// login
-Route::get('/sesi',[UserController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/sesi/login',[UserController::class, 'login']);
-Route::get('/sesi/logout',[UserController::class, 'logout']);
-
-// register
-Route::get('/sesi/register',[UserController::class, 'register'])->middleware('guest');
-Route::post('/sesi/create',[UserController::class, 'create']);
-
-
-//tambahdata siswa
-Route::get('/tambahdatasiswa', [SiswaController::class, 'tambahdatasiswa'])->name('tambahdatasiswa')->middleware('auth');
-Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->name('insertdatasiswa')->middleware('auth');
-
-Route::get('/course', [CategoryController::class, 'index']);
-
-// bagian About
-Route::get('/about', function () {
-    return view('about');
+Route::middleware(['guest'])->group(function () {
+    // Rute yang memerlukan login
+    Route::get('/', [KursusController::class, 'index']);
+    Route::get('/dashboard', [KursusController::class, 'index'])->name('dashboard');
+    //course
+    Route::get('/course', [CategoryController::class, 'index']);
+    // bagian About
+    Route::get('/about', function () {
+        return view('about');
+    });
+    // login
+    Route::get('/sesi',[UserController::class, 'index'])->name('login');
+    Route::post('/sesi/login',[UserController::class, 'login']);
+    Route::get('/sesi/logout',[UserController::class, 'logout']);
+    // register
+    Route::get('/sesi/register',[UserController::class, 'register']);
+    Route::post('/sesi/create',[UserController::class, 'create']);
 });
 
 Route::middleware(['auth'])->group(function () {
-    // Rute dashboard setelah login
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
-
     // Rute untuk mendaftar ke kelas
     Route::post('/join/{kursusId}', [UserController::class, 'joinKursus'])->name('join.kursus');
     Route::get('/kursus/{kursusId}/users', [UserController::class, 'showKursusUsers'])->name('showKursusUsers');
     Route::post('/kursus/{kursus}/exitkursus', [UserController::class, 'exitkursus'])->name('exit.kursus');
 });
 
-
-
-
-// Route::post('/sesi/create',[SessionController::class, 'create']);
-// Route::get('/course', function (Category $category) {
-//     //$data = Category::all();
-
-//     return view('course',[
-//         'title'=> $category->name,
-//         'kursus'=> $category->kursus,
-//         'category'=>$category->name
-//     ]);
-//     //return view('course', compact('data'));
+// Route::middleware(['admin'])->group(function () {
+//     // Rute yang memerlukan admin
+//     Route::get('/kursuses/create', [KursusController::class, 'create'])->name('kursuses.create');
+//     Route::post('/kursuses', [KursusController::class, 'store'])->name('kursuses.store');
+//     Route::get('/kursuses/{kursuses}/edit', [KursusController::class, 'edit'])->name('kursuses.edit');
+//     Route::put('/kursuses/{kursuses}', [KursusController::class, 'update'])->name('kursuses.update');
+//     Route::get('/kursuses', [KursusController::class, 'main'])->name('kursuses.main');
 // });
 
-// Route::get('/course', function (Category $cat) {
-//     //$data = Category::all();
-//     return view('course',[
-//         'categories'=>Category::all(),
-//     ]);
-//     //return view('course', compact('data'));
-// });
+// tambah data course
+Route::get('/tambahdata', [KursusController::class, 'tambahdata'])->name('tambahdata')->middleware('admin');
+Route::post('/insertdata', [KursusController::class, 'insertdata'])->name('insertdata');
+Route::get('/kursus/{kursusId}/edit', [KursusController::class, 'edit'])->name('kursus.edit');
+Route::put('/kursus/{kursusId}', [KursusController::class, 'update'])->name('kursus.update');
+Route::delete('/kursus/{kursusId}', [KursusController::class, 'destroy'])->name('kursus.destroy');
+
+//tambahdata siswa
+Route::get('/tambahdatasiswa', [SiswaController::class, 'tambahdatasiswa'])->name('tambahdatasiswa')->middleware('auth');
+Route::post('/insertdatasiswa', [SiswaController::class, 'insertdatasiswa'])->name('insertdatasiswa')->middleware('auth');
+

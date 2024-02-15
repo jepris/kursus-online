@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -24,7 +24,7 @@
             </div>
         @endif
         {{-- navbar --}}
-        <nav class="navbar navbar-expand-lg mt-3">
+        <nav class="navbar navbar-expand-lg mt-3 mb-4">
             <a class="navbar-brand" dissable href="/dashboard">Logo. </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,28 +32,32 @@
             </button>
             <div class="collapse navbar-collapse d-inline justify-content-center" id="navbarScroll">
                 <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#course">Course</a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home Page</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">How its work</a>
+                        <a class="nav-link" href="/course">Master class</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="/detail">How its work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
                     </li>
                     @can('admin')
                         <li class="nav-item">
                             <a class="nav-link" href="/tambahdata">Add List Course </a>
                         </li>
                     @endcan
+
                 </ul>
             </div>
             <form class="d-flex" role="search justify-content-end">
-                <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
-                    Search</button>
+                {{-- <button class="btn btn-outline-none me-4" type="submit"><ion-icon name="search-outline"></ion-icon>
+                    Search</button> --}}
+                <a class="btn btn-outline-dark" href="/course" type="submit">Join Our Course</a>
+                {{-- <a href="/sesi" class="btn btn-outline-dark ms-3" type="submit">Login</a> --}}
+
                 @if (auth()->check())
                     <div class="dropdown ms-3">
                         <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -62,7 +66,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><button class="dropdown-item" type="button"
-                                    disabled>{{ auth()->user()->name }}</button></li>
+                                    disabled>{{ auth()->user()->role }}</button></li>
                             <li><a href="/sesi/logout" class="dropdown-item" type="button">Log Out</a></li>
                         </ul>
                     </div>
@@ -72,56 +76,20 @@
                 @endif
             </form>
         </nav>
-
-        {{-- untuk kelas website --}}
-        <section class="mb-5 scroll-x">
-            @foreach ($categories as $category)
-                <h2 class="judulkelas mt-4">{{ $category->name }}</h2>
-                <hr class="border border-danger border-2 opacity-50">
-                <div class="course-container">
-                    @foreach ($category->kursus as $kursus)
-                        <div class="card border border-2 border-dark-subtle" style="width: 18rem;">
-                            <img src="{{ asset('/cover_image/' . $kursus->cover) }}" class="card-img-top" alt="null!">
-                            <div class="card-body">
-                                <h5 class="card-title judulcourse d-flex justify-content-center">{{ $kursus->judul }}</h5>
-                                <p class="card-text descript d-flex justify-content-center ">{{$kursus->description}}</p>
-                                <div class="row">
-                                    <div class="col d-flex justify-content-center">
-                                        <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-secondary">View User</a>
-                                    </div>
-                                    <div class="col d-flex justify-content-center">
-                                        <form method="POST" action="{{ route('join.kursus', ['kursusId' => $kursus->id]) }}">
-                                            @csrf
-                                            {{-- <button type="submit" class="btn btn-sm btn-primary">Join</button> --}}
-                                            <button type="submit" class="btn btn-success">Join</button>
-                                        </form>
-                                    </div>
-                                    <div class="col d-flex justify-content-center">
-                                        {{-- <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-secondary">View User</a> --}}
-                                        @can('admin')
-                                        <a href="{{ route('kelas.edit', ['kursus' => $kursus->id]) }}">Edit Class</a>
-                                        @endcan
-                                    </div>
-                                    <div class="col d-flex justify-content-center">
-                                        {{-- <a href="{{ url("/kursus/{$kursus->id}/users") }}" class="btn btn-secondary">View User</a> --}}
-                                        @can('admin')
-                                        <form action="{{ route('kursus.destroy', ['kursus' => $kursus->id]) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">Delete Class</button>
-                                        </form>
-                                        @endcan
-                                    </div>
-                                </div>
-                                {{-- <a href="#" class="btn btn-primary">join</a> --}}
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
-        </section>
     </div>
 
+    {{-- hero section --}}
+    <section>
+        <div class="container">
+            <div class="row">
+                @yield('content')
+            </div>
+        </div>
+    </section>
+
+
+    {{-- modal --}}
+    {{-- modal login --}}
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -193,8 +161,8 @@
                                             <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
                                             <select class="form-select" name="jeniskelamin" id="floatingSelectGrid">
                                                 <option selected disabled>--</option>
-                                                <option value="1">Pria</option>
-                                                <option value="2">Wanita</option>
+                                                <option value="pria">Pria</option>
+                                                <option value="wanita">Wanita</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">
@@ -225,6 +193,49 @@
         </div>
     </div>
 
+    <div class="modal fade" id="joinkelas" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-body">
+                        <div class="container">
+                            <h1 class="text-center mt-3">Join Kelas</h1>
+                            <div class="card" style="margin-top: 70px">
+                                <form style="margin: 30px" action="/insertdatasiswa" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Nama</label>
+                                        <input class="form-control" type="text" id="name" name="name"
+                                            placeholder="Masukkan Nama Anda">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">No. telpon</label>
+                                        <input type="number" name="notelp" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            placeholder="Masukkan No Telpon">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+                                        <select class="form-select" name="jeniskelamin" id="floatingSelectGrid">
+                                            <option selected disabled>--</option>
+                                            <option value="1">Pria</option>
+                                            <option value="2">Wanita</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
     {{-- bootstrap javascript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -252,7 +263,6 @@
         }, 3000); // 3 seconds in milliseconds
     });
     </script>
-
 </body>
 
 </html>
