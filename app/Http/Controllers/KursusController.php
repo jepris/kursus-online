@@ -48,4 +48,45 @@ class KursusController extends Controller
 
     //     return redirect('/course')->with('success', 'Anda telah keluar dari kelas.');
     // }
+    public function edit(Kursus $id)
+    {
+        $kursus = Kursus::find($id);
+        return view('kursus.edit', compact('kursus'));
+    }
+
+    public function update(Request $request, Kursus $kursus,$id)
+    {
+        $kursus = Kursus::find($id);
+        $kursus->cover = $request->cover;
+        $kursus->judul = $request->judul;
+        $kursus->category_id = $request->category_id;
+        $kursus->description = $request->description;
+        if ( $request->hasFile( 'cover' ) ) {
+            $file = $request->file( 'cover' );
+            $name = 'cover-'.date('ymdhis'). '.' . $file->getClientOriginalExtension();
+            $request->cover->move( public_path('/cover_image'), $name );
+            $gambar = $name;
+        } else {
+
+            $gambar = $request->cover;
+        }
+       
+        $kursus->cover = $gambar;
+        $kursus->update();
+        // $request->validate([
+        //     'nama' => 'required',
+        //     'deskripsi' => 'required',
+        // ]);
+
+        // $kursus->update($request->all());
+
+        return redirect()->route('kursus.index')->with('status', 'Class updated successfully');
+    }
+
+    public function destroy(Kursus $kursus)
+    {
+        $kursus->delete();
+
+        return redirect()->route('kursus.index')->with('status', 'Class deleted successfully');
+    }
 }
